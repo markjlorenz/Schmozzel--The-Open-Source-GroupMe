@@ -69,13 +69,16 @@ class NattersController < ApplicationController
 
   def command_natter text
     is_command = !(text =~ /^#([^\s]+)/).nil?
-    (command_value = text.gsub /^##{$1}\s/, '') if is_command 
+    if is_command
+      command_value = text.gsub /^##{$1}\s/, ''
       case $1
         when 'call_me' then @schmozzeler.rename command_value; comand_result = "Hello, #{command_value}"
         when 'list' then command_result = 'call_me - to name yourself\n'
         else command_result = 'Sorry, I don\'t know how to do that.  Try, #list'
       end
-    mail = Postoffce.natter @schmozzeler.address, command_result
+      mail = Postoffice.natter @schmozzeler.address, command_result
+      mail.deliver
+    end
     return is_command
   end
 
