@@ -75,9 +75,9 @@ class NattersController < ApplicationController
       command_result = case command_key
         when 'call_me'
           @schmozzeler.rename command_value
-          "Hello, #{command_value}"
-        when 'list' then 'call_me - to name yourself\n'
-        else "Sorry, I don\'t know how to '#{command_key}'.  Try, #list"
+          "Hello #{command_value}"
+        when 'help' then 'call_me - to name yourself\n'
+        else "Sorry, I don\'t know how to '#{command_key}'.  Try, #help"
       end
       mail = Postoffice.natter @schmozzeler.address, command_result
       mail.deliver
