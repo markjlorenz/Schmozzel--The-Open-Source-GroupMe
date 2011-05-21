@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
-  before_filter :authenticate, except:[:mobile]
+  before_filter :authenticate, except:[:mobile, :home]
 
 private
   def authenticate
