@@ -1,5 +1,5 @@
 Schmozzle::Application.routes.draw do
-  match 'mobile'=>'natter#mobile', :conditions => { :method => :post }
+  match 'mobile'=>'natters#mobile', :conditions => { :method => :post }
   resources :natters
 
   # The priority is based upon order of creation:
