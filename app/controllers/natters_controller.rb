@@ -72,10 +72,12 @@ class NattersController < ApplicationController
     command_key = $1
     if is_command
       command_value = text.gsub /^##{$1}\s/, ''
-      case command_key
-        when 'call_me' then @schmozzeler.rename command_value; comand_result = "Hello, #{command_value}"
-        when 'list' then command_result = 'call_me - to name yourself\n'
-        else command_result = "Sorry, I don\'t know how to '#{command_key}'.  Try, #list"
+      command_result = case command_key
+        when 'call_me'
+          @schmozzeler.rename command_value
+          "Hello, #{command_value}"
+        when 'list' then 'call_me - to name yourself\n'
+        else "Sorry, I don\'t know how to '#{command_key}'.  Try, #list"
       end
       mail = Postoffice.natter @schmozzeler.address, command_result
       mail.deliver
