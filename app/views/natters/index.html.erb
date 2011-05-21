@@ -4,6 +4,7 @@
   <tr>
     <th>From</th>
     <th>Message</th>
+    <th>When</th>
     <th></th>
     <th></th>
     <th></th>
@@ -13,6 +14,7 @@
   <tr>
     <td><%= natter.schmozzeler.address unless natter.schmozzeler.nil? %></td>
     <td><%= natter.message %></td>
+    <td><%= distance_of_time_in_words_to_now natter.created_at %></td>
     <td><%= link_to 'Show', natter %></td>
     <td><%= link_to 'Edit', edit_natter_path(natter) %></td>
     <td><%= link_to 'Destroy', natter, :confirm => 'Are you sure?', :method => :delete %></td>
