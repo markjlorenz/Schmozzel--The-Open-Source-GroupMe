@@ -48,7 +48,7 @@ class NattersController < ApplicationController
 
   def mobile
     @schmozzeler.find_or_create_by_address clean_field(params[:from])
-    @natter = Natter.new(message:params[:text], schmozzeler_id:@schmozzeler.id))
+    @natter = Natter.new(message:params[:text], schmozzeler_id:@schmozzeler.id)
     if @natter.save
       mail = PostOffice.natter(@schmozzeler.all.map(&:address)-@schmozzeler.address, @natter.message)
       mail.deliver
