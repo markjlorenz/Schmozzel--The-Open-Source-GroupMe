@@ -1,0 +1,15 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>From:</b>
+  <%= @natter.from %>
+</p>
+
+<p>
+  <b>Message:</b>
+  <%= @natter.message %>
+</p>
+
+
+<%= link_to 'Edit', edit_natter_path(@natter) %> |
+<%= link_to 'Back', natters_path %>

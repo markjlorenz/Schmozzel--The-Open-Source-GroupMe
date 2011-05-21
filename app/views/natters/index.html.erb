@@ -1,0 +1,25 @@
+<h1>Listing natters</h1>
+
+<table>
+  <tr>
+    <th>From</th>
+    <th>Message</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @natters.each do |natter| %>
+  <tr>
+    <td><%= natter.from %></td>
+    <td><%= natter.message %></td>
+    <td><%= link_to 'Show', natter %></td>
+    <td><%= link_to 'Edit', edit_natter_path(natter) %></td>
+    <td><%= link_to 'Destroy', natter, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Natter', new_natter_path %>
