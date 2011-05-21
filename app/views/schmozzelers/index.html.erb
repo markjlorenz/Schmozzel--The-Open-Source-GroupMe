@@ -1,0 +1,21 @@
+<h1>Listing schmozzelers</h1>
+
+<table>
+  <tr>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @schmozzelers.each do |schmozzeler| %>
+  <tr>
+    <td><%= link_to 'Show', schmozzeler %></td>
+    <td><%= link_to 'Edit', edit_schmozzeler_path(schmozzeler) %></td>
+    <td><%= link_to 'Destroy', schmozzeler, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Schmozzeler', new_schmozzeler_path %>

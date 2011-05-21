@@ -1,4 +1,6 @@
 Schmozzle::Application.routes.draw do
+  resources :schmozzelers
+
   match 'mobile'=>'natters#mobile', :conditions => { :method => :post }
   resources :natters
 
