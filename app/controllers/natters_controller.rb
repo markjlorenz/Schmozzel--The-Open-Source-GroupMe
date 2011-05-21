@@ -50,11 +50,11 @@ class NattersController < ApplicationController
     @schmozzeler = Schmozzeler.find_or_create_by_address clean_field(params[:from])
     @natter = Natter.new(message:params[:text], schmozzeler_id:@schmozzeler.id)
     if @natter.save
-      mail = PostOffice.natter(@schmozzeler.all.map(&:address)-@schmozzeler.address, @natter.message)
+      mail = Postoffice.natter(@schmozzeler.all.map(&:address)-@schmozzeler.address, @natter.message)
       mail.deliver
       render text:"OK"
     else
-      mail = PostOffice.natter(@schmozzeler.address)
+      mail = Postoffice.natter(@schmozzeler.address)
       mail.deliver
       render text:"NG", :status=>:unprocessable_entity
     end
