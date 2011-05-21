@@ -1,6 +1,5 @@
 class NattersController < ApplicationController
   skip_before_filter :verify_authenticity_token, only:[:natters_mobile]
-  skip_before_filter :authenticate, only:[:natters_mobile]
 
   def index
     @natters = Natter.all
