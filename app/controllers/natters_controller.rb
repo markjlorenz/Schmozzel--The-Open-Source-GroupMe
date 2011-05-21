@@ -46,7 +46,17 @@ class NattersController < ApplicationController
     end
   end
 
-  def natters_mobile
+  def mobile
+    @natter = Natter.new(message:params[:text], from:clean_field(params[:from]))
+    if @natter.save
+      render text:"OK"
+    else
+      render text:"NG", :status=>:unprocessable_entity
+    end
+  end
+
+  def clean_field dirty
+    dirty.gsub /\n/, '' unless dirty.nil?
   end
 
   def update
