@@ -48,9 +48,12 @@ class NattersController < ApplicationController
 
   def mobile
     @schmozzeler = Schmozzeler.find_or_create_by_address clean_field(params[:from])
+    if command_natter params[:text]
+      render text:"OK" and return 
+    end
     @natter = Natter.new(message:params[:text], schmozzeler_id:@schmozzeler.id)
     if @natter.save
-      mail = Postoffice.natter(Schmozzeler.all.map(&:address)-[@schmozzeler.address], @natter.message)
+      mail = Postoffice.natter(Schmozzeler.all.map(&:address)-[@schmozzeler.address], @natter.message, @schmozzeler)
       mail.deliver
       render text:"OK"
     else
@@ -62,6 +65,18 @@ class NattersController < ApplicationController
 
   def clean_field dirty
     dirty.gsub /\n/, '' unless dirty.nil?
+  end
+
+  def command_natter text
+    is_command = !(text =~ /^#([^\s]+)/).nil?
+    (command_value = text.gsub /^##{$1}\s/, '') if is_command 
+      case $1
+        when 'call_me' then @schmozzeler.rename command_value; comand_result = "Hello, #{command_value}"
+        when 'list' then command_result = 'call_me - to name yourself\n'
+        else command_result = 'Sorry, I don\'t know how to do that.  Try, #list'
+      end
+    mail = Postoffce.natter @schmozzeler.address, command_result
+    return is_command
   end
 
   def update

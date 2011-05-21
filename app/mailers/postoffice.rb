@@ -1,6 +1,7 @@
 class Postoffice < ActionMailer::Base
   default :from => "natter@schmozzel.com"
-  def natter(to, message)
+  def natter(to, message, schmozzeler=nil)
+    @schmozzeler = schmozzeler
     @message = message
     mail(:to=>to)
   end
@@ -8,4 +9,5 @@ class Postoffice < ActionMailer::Base
   def error(to)
     mail(:to=>to)
   end
+
 end

@@ -3,6 +3,7 @@
 <table>
   <tr>
     <th>Address</th>
+    <th>Name</th>
     <th>Joined</th>
     <th></th>
   </tr>
@@ -10,6 +11,7 @@
 <% @schmozzelers.each do |schmozzeler| %>
   <tr>
     <td><%= schmozzeler.address %></td>
+    <td><%= schmozzeler.name %></td>
     <td><%= distance_of_time_in_words_to_now schmozzeler.created_at %></td>
     <td><%= link_to 'Show', schmozzeler %></td>
     <td><%= link_to 'Edit', edit_schmozzeler_path(schmozzeler) %></td>
