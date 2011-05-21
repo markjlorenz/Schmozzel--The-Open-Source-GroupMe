@@ -11,7 +11,7 @@
 
 <% @natters.each do |natter| %>
   <tr>
-    <td><%= natter.from %></td>
+    <td><%= natter.schomzzeler.address unless natter.schmozzeler.nil? %></td>
     <td><%= natter.message %></td>
     <td><%= link_to 'Show', natter %></td>
     <td><%= link_to 'Edit', edit_natter_path(natter) %></td>
