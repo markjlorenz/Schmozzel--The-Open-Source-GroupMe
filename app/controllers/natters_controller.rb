@@ -48,12 +48,13 @@ class NattersController < ApplicationController
 
   def mobile
     @schmozzeler = Schmozzeler.find_or_create_by_address clean_field(params[:from])
+    @schmozzeler.update_attribute :muted_at, nil
     if command_natter params[:text]
       render text:"OK" and return 
     end
     @natter = Natter.new(message:params[:text], schmozzeler_id:@schmozzeler.id)
     if @natter.save
-      mail = Postoffice.natter(Schmozzeler.all.map(&:address)-[@schmozzeler.address], @natter.message, @schmozzeler)
+      mail = Postoffice.natter(Schmozzeler.listening.all.map(&:address)-[@schmozzeler.address], @natter.message, @schmozzeler)
       mail.deliver
       render text:"OK"
     else
@@ -77,9 +78,15 @@ class NattersController < ApplicationController
           @schmozzeler.rename command_value
           "Hello #{command_value}"
         when "who's_here" then Schmozzeler.all.map(&:name).join(',') 
+        when "who's_on_mute" then Schmozzeler.muted.all.map(&:name).join(',') 
         when "all_contacts" then Schmozzeler.all.map(&:address).join("\n") 
+        when 'mute'
+          @schmozzeler.update_attribute :muted_at, DateTime.now
+          "Schmozzel is on mute.  Just start texting again when you want back in."
         when 'help' 
-          "all_me - to name yourself\n" +
+          "call_me - to name yourself\n" +
+          "mute - stop the nattering\n" +
+          "who's_on_mute - see who's not listening\n" +
           "who's_here - to see the names of the schmozzelers\n" +
           "all_contacts - to see the contact info for all schmozzelers\n"
         else "Sorry, I don\'t know how to '#{command_key}'.  Try, #help"
