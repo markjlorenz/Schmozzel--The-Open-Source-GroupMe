@@ -7,7 +7,6 @@
     <th>When</th>
     <th></th>
     <th></th>
-    <th></th>
   </tr>
 
 <% @natters.each do |natter| %>
@@ -16,7 +15,6 @@
     <td><%= natter.message %></td>
     <td><%= distance_of_time_in_words_to_now natter.created_at %></td>
     <td><%= link_to 'Show', natter %></td>
-    <td><%= link_to 'Edit', edit_natter_path(natter) %></td>
     <td><%= link_to 'Destroy', natter, :confirm => 'Are you sure?', :method => :delete %></td>
   </tr>
 <% end %>
@@ -24,4 +22,4 @@
 
 <br />
 
-<%= link_to 'New Natter', new_natter_path %>
+<%= link_to 'Schmozzlers > ', schmozzelers_path %>
