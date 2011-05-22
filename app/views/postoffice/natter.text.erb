@@ -1,3 +1,2 @@
 <%= @schmozzeler.name+':' unless @schmozzeler.nil? || @schmozzeler.name.blank? %>
-<% puts "*****" + @message %>
-<%= CGI::unescapeHTML(@message) %>
+<%= @message.html_safe %>
