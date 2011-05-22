@@ -1,2 +1,2 @@
 <%= @schmozzeler.name+':' unless @schmozzeler.nil? || @schmozzeler.name.blank? %>
-<%= @message %>
+<%= CGI::unescapeHTML(@message) %>
