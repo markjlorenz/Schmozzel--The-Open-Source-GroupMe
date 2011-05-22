@@ -80,7 +80,7 @@ class NattersController < ApplicationController
         when "all_contacts" then Schmozzeler.all.map(&:address).join('\n') 
         when 'help' 
           'call_me - to name yourself\n' +
-          "who's_here - to see the names of the schmozzelers\n"
+          "who's_here - to see the names of the schmozzelers\n" +
           "all_contacts - to see the contact info for all schmozzelers\n"
         else "Sorry, I don\'t know how to '#{command_key}'.  Try, #help"
       end
