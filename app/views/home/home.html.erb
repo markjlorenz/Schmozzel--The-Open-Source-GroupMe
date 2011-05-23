@@ -5,8 +5,9 @@
   }
   .float-container{
     overflow:auto;
-    width:100%;
+    width: 1100px;
     margin-top:1em;
+    margin-left:5%;
   }
   .footer{
     position:absolute;
@@ -14,10 +15,12 @@
     width:99%;
     text-align:center;
   }
+  h1{
+    font-size: 60px;
+  }
 </style>
-<h1>What a Schmozzel!</h1>
 <div class='float-container'>
-  <div style='float:left; width:20em; margin-left:2em;'>
+  <div style='float:left; width:25em; margin-left:2em;'>
     <h2 style="font-style:italic;">Schmozzel</h2>
     <span style='font-style:bold;'>noun </span><span>\she-mawz-uhl\</span> <br />
     <ul>
@@ -25,19 +28,20 @@
       <li>A big mess</li>
     </ul>
   </div>
+  <div style='float:left; overflow:auto'>
+    <h1>What a Schmozzel!</h1>
+  </div>
+</div>
+<div class='float-container'>
+  <div style='float:left; margin-left:2em;'><%= image_tag 'schmozzel_screenshot_with_phone.png', style:'height:40em; width:auto;' %></div>
   <div style='float:left;'>
     <ul>
       <h2>What is Schmozzel?</h2>
       <li>Schomzzel does what GroupMe does, but it works</li>
       <li>Schmozzel is owned and operated by us, so it's completly private</li>
       <li>Schmozzel was made in about 2 hours by Mark, becuase he said he would last night at the Winking Lizard.</li>
-      <li>Schmozzel did not recieve $10M in venture funding like GroupMe.  Sorry, we're still poor.</li>
+      <li>Schmozzel did not recieve $11.5M in venture funding like GroupMe.  Sorry, we're still poor.</li>
     </ul>
-  </div>
-</div>
-<div class='float-container'>
-  <div style='float:left; margin-left:2em;'><%= image_tag 'schmozzel_screenshot.png', style:'height:30em; width:auto;' %></div>
-  <div style='float:left;'>
     <ul>
       <h2>How Can I Join the Schmozzel?</h2>
       <li>Just text or email anything to 'natter@schmozzel.com' <br /> <span style="padding-left:2em;font-size:80%;">"natter" is the noise monkey's make</span></li>
@@ -48,5 +52,5 @@
   </div>
 </div>
 <div class='footer'>
-   Copyright 2011, Mark J. Lorenz, I probably would accept that $10M by the way. 
+   Copyright 2011, Mark J. Lorenz, I probably would accept that $11.5M by the way. 
 </div>
