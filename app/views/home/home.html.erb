@@ -23,7 +23,7 @@
     height: 8em;
     overflow-y: auto;
   }
-  .recent-natter .timestamp{
+  .recent-natter .timestamp, .recent-natter .thread-name{
     font-weight: bold;
   }
 </style>
@@ -62,7 +62,7 @@
       <li><div class='recent-natter'>
           <ul>
             <% @recent_natter.each do |natter| %>
-            <li> <span class='timestamp'><%= distance_of_time_in_words_to_now natter.created_at %></span>: <span class='message'><%= natter.message %></span></li>
+            <li><span class='thread-name'>TO: <%= natter.thread %> </span><span class='timestamp'><%= distance_of_time_in_words_to_now natter.created_at %> ago</span><br /> <span class='message'><%= natter.message %></span></li>
             <% end %>
           </ul>
       </div></li>
