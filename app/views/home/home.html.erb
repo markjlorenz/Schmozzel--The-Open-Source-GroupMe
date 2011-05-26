@@ -23,6 +23,9 @@
     height: 8em;
     overflow-y: auto;
   }
+  .recent-natter .timestamp{
+    font-weight: bold;
+  }
 </style>
 <div class='float-container'>
   <div style='float:left; width:25em; margin-left:2em;'>
@@ -59,7 +62,7 @@
       <li><div class='recent-natter'>
           <ul>
             <% @recent_natter.each do |natter| %>
-              <li> <%= distance_of_time_in_words_to_now natter.created_at %>: <%= natter.message %></li>
+            <li> <span class='timestamp'><%= distance_of_time_in_words_to_now natter.created_at %></span>: <span class='message'><%= natter.message %></span></li>
             <% end %>
           </ul>
       </div></li>
