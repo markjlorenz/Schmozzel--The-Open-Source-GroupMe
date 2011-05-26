@@ -18,6 +18,11 @@
   h1{
     font-size: 60px;
   }
+  .recent-natter{
+    width: 40em;
+    height: 8em;
+    overflow-y: auto;
+  }
 </style>
 <div class='float-container'>
   <div style='float:left; width:25em; margin-left:2em;'>
@@ -48,6 +53,16 @@
       <li>All the other schmozzelers will get a copy of your message.</li>
       <li>You can give yourself a name by texting, '#call_me mister_monkey_shines'</li>
       <li>See all the schmozzel commands by texting, '#help'</li>
+    </ul>
+    <ul>
+      <h2>What's being said now:</h2>
+      <li><div class='recent-natter'>
+          <ul>
+            <% @recent_natter.each do |natter| %>
+              <li> <%= distance_of_time_in_words_to_now natter.created_at %>: <%= natter.message %></li>
+            <% end %>
+          </ul>
+      </div></li>
     </ul>
   </div>
 </div>
