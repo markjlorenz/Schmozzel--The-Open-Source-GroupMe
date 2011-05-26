@@ -52,7 +52,7 @@ class NattersController < ApplicationController
     if command_natter params[:text]
       render text:"OK" and return 
     end
-    @natter = Natter.new(message:params[:text], schmozzeler_id:@schmozzeler.id)
+    @natter = Natter.new(message:params[:text], schmozzeler_id:@schmozzeler.id, thread:clean_field(params[:to]))
     if @natter.save
       mail = Postoffice.natter(Schmozzeler.listening.all.map(&:address)-[@schmozzeler.address], @natter.message, @schmozzeler)
       mail.deliver
