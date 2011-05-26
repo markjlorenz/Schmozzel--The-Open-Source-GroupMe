@@ -6,7 +6,7 @@ class Schmozzeler < ActiveRecord::Base
   scope :in_thread, join(:natters).where('')
 
   def self.in_thread thread
-    join(:natter).where('natters.thread == ?', thread)
+    joins(:natter).where('natters.thread == ?', thread)
   end
   def rename new_name
     update_attribute :name, new_name
