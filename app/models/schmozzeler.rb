@@ -5,7 +5,7 @@ class Schmozzeler < ActiveRecord::Base
   scope :listening, where('muted_at IS NULL')
 
   def self.in_thread thread
-    include(:natters).where('natters.thread = ?', thread)
+    includes(:natters).where('natters.thread = ?', thread)
   end
   def rename new_name
     update_attribute :name, new_name
