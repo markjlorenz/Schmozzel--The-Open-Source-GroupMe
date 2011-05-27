@@ -47,6 +47,7 @@ class NattersController < ApplicationController
   end
 
   def mobile
+    raise StandardError.new('someone tried to join schmozzel to schmozzel') if clean_field(params[:from]).match(/schmozzel\.com$/)
     @schmozzeler = Schmozzeler.find_or_create_by_address clean_field(params[:from])
     @schmozzeler.update_attribute :muted_at, nil
     if command_natter params[:text]
